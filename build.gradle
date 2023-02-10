@@ -1,5 +1,6 @@
 plugins {
 	id 'java'
+	id 'war'
 	id 'org.springframework.boot' version '3.0.2'
 	id 'io.spring.dependency-management' version '1.1.0'
 }
@@ -13,8 +14,24 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'junit:junit:4.13.1'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
+	// h2 인메모리형 데이터베이스
+	implementation 'com.h2database:h2'
+	// JAP
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	// 롬북
+	implementation 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	// 템플릿엔진
+	implementation 'org.springframework.boot:spring-boot-starter-mustache'
+	// SpringSecurity
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	// 유효성 검사
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
 
 tasks.named('test') {

@@ -1,0 +1,39 @@
+{{>layout/header}}
+<div class="d-flex justify-content-center mt-2">
+    <div class="row mx-0" style="width: 400px;">
+        <form action="/member/loginProc" method="post">
+            <div>
+                <h1>로그인</h1>
+            </div>
+            <div class="form-group mt-3">
+                <div class="row">
+                    <div class="col">
+                        <input name="id" type="text" class="form-control" placeholder="아이디" aria-label="id">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt-3">
+                <div class="row">
+                    <div class="col">
+                        <input name="pass" type="password" class="form-control" placeholder="패스워드" aria-label="password">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt-3 ">
+                <div class="d-flex align-items-end flex-column">
+                    <div class="col alien-end">
+                        <a href="/member/signin" role="button" class="btn btn-success">등록</a>
+                        <button type="submit" id="btn-login" class="btn btn-primary">로그인</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 로그인 에러발생시 전달받은 메세지를 표시 -->
+            {{#error}}
+            <div class="alert alert-danger mt-3">
+                {{error}}
+            </div>
+            {{/error}}
+        </form>
+    </div>
+</div>
+{{>layout/footer}}
