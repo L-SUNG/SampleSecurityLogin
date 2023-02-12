@@ -6,6 +6,12 @@
                 <h1>유저등록</h1>
             </div>
 
+            {{#validationErrors}}
+            <div class="alert alert-danger" role="alert">
+                <span>{{errorMsg}}</span>
+            </div>
+            {{/validationErrors}}
+
             <div class="form-group mt-3">
                 <label for="id" class="form-label">아이디</label>
                 <input type="text" class="form-control is-invalid" id="id" name="id" placeholder="아이디" required>
