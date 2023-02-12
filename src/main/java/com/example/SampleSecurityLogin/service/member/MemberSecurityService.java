@@ -22,22 +22,35 @@ public class MemberSecurityService implements UserDetailsService {
 
     private final MemberRepository memberRepository;
 
+    /**
+     * ID로 멤버 검색
+     * @param username the username identifying the user whose data is required.
+     * @return 유저정보
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // 멤버ID로 검색
+        // 멤버 ID로 검색
         Optional<Member>  _member = this.memberRepository.findById(username);
+        // 멤버 Role
+        List<GrantedAuthority> authorities = new ArrayList<>();
 
-        if(_member.isEmpty()) {
-            throw new UsernameNotFoundException("등록된 멤버를 찾을 수 없습니다.");
-        }
+        // 일치하는 멤버 판정
+        if (!_member.isEmpty()){
+            // 일치하는 멤버가 존재하는 경우
+            Member member = _member.get();
 
-        Member member = _member.get();
-        List<GrantedAuthority> authorites = new ArrayList<>();
-        if ("admin".equals(username)) {
-            authorites.add(new SimpleGrantedAuthority(MemberRole.ADMIN.getValue()));
+            if ("admin".equals(username)) {
+                // 멤버 ID가 "admin"일 경우 ROLE_ADMIN을 부여
+                authorities.add(new SimpleGrantedAuthority(MemberRole.ADMIN.getValue()));
+            } else {
+                // 멤버 ID가 "admin"가 아닐 경우 ROLE_MEMBER를 부여
+                authorities.add(new SimpleGrantedAuthority(MemberRole.MEMBER.getValue()));
+            }
+            return new User(member.getId(), member.getPass(), authorities);
         } else {
-            authorites.add(new SimpleGrantedAuthority(MemberRole.MEMBER.getValue()));
+            // 일치하는 멤버가 존재하지 않는 경우
+            return null;
         }
-        return new User(member.getId(), member.getPass(), authorites);
     }
 }

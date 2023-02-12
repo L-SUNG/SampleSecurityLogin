@@ -1,6 +1,6 @@
 package com.example.SampleSecurityLogin.config;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,12 +10,19 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration // 설정파일 어노테이션
 @EnableWebSecurity // 모든 URL의 요청을 담당
 public class SecurityConfig {
+
+    /**
+     * 로그인 실패 핸들러 의존성 주입
+     */
+    @Autowired
+    AuthenticationFailureHandler customFailureHandler;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -31,7 +38,8 @@ public class SecurityConfig {
             .and()
                 .formLogin()
                 .loginPage("/member/login")
-                .defaultSuccessUrl("/");
+                .defaultSuccessUrl("/")
+                .failureHandler(customFailureHandler);
 
         return http.build();
     }

@@ -13,12 +13,10 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Controller
@@ -28,7 +26,14 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping("/login")
-    public String login() {
+    public String login(@RequestParam(value = "error", required = false)String error,
+                        @RequestParam(value = "exception", required = false)String exception,
+                        Model model) {
+
+        // 예외 발생시 알림 표시를 위한 값 설정
+        model.addAttribute("error", error);
+        model.addAttribute("exception", exception);
+
         return "member-login";
     }
 

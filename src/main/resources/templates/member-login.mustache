@@ -6,11 +6,11 @@
                 <h1>로그인</h1>
             </div>
 
-            {{#param}}
+            {{#error}}
                 <div class="alert alert-danger" role="alert">
-                    <span>{{error}}</span>
+                    <span>{{exception}}</span>
                 </div>
-            {{/param}}
+            {{/error}}
 
             <div class="form-group mt-3">
                 <div class="row">
