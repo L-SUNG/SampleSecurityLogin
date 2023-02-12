@@ -1,16 +1,10 @@
 # SampleSecurityLogin
-
-------------
 개발목적 : 스프링의 시큐리티 로그인을 사용하기 위한 샘플 코드입니다.
 
 # SecurityConfig
-
-------------
 비추천의 WebSecurityConfigurerAdapter 사용을 배제하고SecurityFilterChain을 사용
 
 # Mustache 템플릿에서 제공 되어지지 않는 기능을 추가구현
-
-------------
 1. form태크 내부에 _csrf 토큰 취득 
    + application.properties에 리퀘스트 속성 값 사용을 true로 설정
      ```properties
