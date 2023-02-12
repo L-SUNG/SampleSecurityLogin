@@ -4,6 +4,11 @@
 # SecurityConfig
 비추천의 WebSecurityConfigurerAdapter 사용을 배제하고SecurityFilterChain을 사용
 
+# Security 로그인 참고자료
+[3-05 스프링 시큐리티](https://wikidocs.net/162150)  
+[3-06 회원가입](https://wikidocs.net/162141)  
+[3-07 로그인과 로그아웃](https://wikidocs.net/162255)  
+
 # Mustache 템플릿에서 제공 되어지지 않는 기능을 추가구현
 1. form태그 내부에 _csrf 토큰값 추가 
    + application.properties에 리퀘스트 속성 값 사용을 true로 설정
