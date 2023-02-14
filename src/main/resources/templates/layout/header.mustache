@@ -20,10 +20,11 @@
             <!-- 데스크톱 모드 표시-->
             <div class="d-flex align-self-center" style="height: 20px;">
                 {{^member}}
-                    <a href="/member/login"><p class="fw-bold text-light">로그인</p></a>
+                    <a href="/member/login"><span class="fw-bold text-light">로그인</span></a>
                 {{/member}}
                 {{#member}}
-                    <a href="/member/logout"><p class="fw-bold text-light">로그아웃</p></a>
+                    <span class="fw-bold text-light me-2">{{member}}님</span>
+                    <a href="/member/logout"><span class="fw-bold text-light">로그아웃</span></a>
                 {{/member}}
             </div>
         </div>
