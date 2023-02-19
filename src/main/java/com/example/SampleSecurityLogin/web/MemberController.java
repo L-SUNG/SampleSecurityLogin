@@ -37,12 +37,12 @@ public class MemberController {
         return "member-login";
     }
 
-    @GetMapping("/signin")
+    @GetMapping("/signup")
     public String signup(MemberCreateForm memberCreateForm) {
-        return "member-signin";
+        return "member-signup";
     }
 
-    @PostMapping("/signin")
+    @PostMapping("/signup")
     public String signup(@Valid MemberCreateForm memberCreateForm, BindingResult bindingResult, Model model) {
 
         // 유효성 검사 판정
@@ -56,7 +56,7 @@ public class MemberController {
                 // 에러 메세지 리스트를 모델에 추가
                 model.addAttribute("validationErrors", errorList);
             }
-            return "member-signin";
+            return "member-signup";
         }
 
         try {
@@ -66,12 +66,12 @@ public class MemberController {
             // 중복발생
             e.printStackTrace();
             model.addAttribute("validationErrors", new ErrorMsg("이미 등록된 사용자입니다."));
-            return "member-signin";
+            return "member-signup";
         }catch(Exception e) {
             // 예외발생
             e.printStackTrace();
             model.addAttribute("validationErrors", new ErrorMsg(e.getMessage()));
-            return "member-signin";
+            return "member-signup";
         }
         
         return "redirect:/";
