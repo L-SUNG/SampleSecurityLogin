@@ -36,7 +36,7 @@ public class MemberSecurityService implements UserDetailsService {
         List<GrantedAuthority> authorities = new ArrayList<>();
 
         // 일치하는 멤버 판정
-        if (!_member.isEmpty()){
+        if (_member.isPresent()){
             // 일치하는 멤버가 존재하는 경우
             Member member = _member.get();
 
