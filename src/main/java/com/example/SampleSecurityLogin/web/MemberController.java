@@ -3,7 +3,7 @@ package com.example.SampleSecurityLogin.web;
 import com.example.SampleSecurityLogin.service.member.MemberService;
 import com.example.SampleSecurityLogin.utils.dto.ErrorMsg;
 import com.example.SampleSecurityLogin.web.form.MemberCreateForm;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;

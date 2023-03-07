@@ -14,7 +14,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@Configuration // 설정파일 어노테이션
+@Configuration
 @EnableWebSecurity // 모든 URL의 요청을 담당
 public class SecurityConfig {
 
@@ -25,10 +25,10 @@ public class SecurityConfig {
     AuthenticationFailureHandler customFailureHandler;
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests().requestMatchers(
-                    new AntPathRequestMatcher("/**")).permitAll()
-            .and()
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.authorizeRequests(authorizeRequests ->
+                        authorizeRequests.anyRequest().authenticated()
+                )
                 .csrf().ignoringRequestMatchers(
                         new AntPathRequestMatcher("/h2-console/**"))
             .and()
